@@ -212,12 +212,12 @@ const BirthdayCard = () => {
               >
                 Print Card
               </button>
-              <button 
+            {/*  <button 
                 onClick={() => navigate('/')}
                 className="border border-pink-500 text-pink-500 px-6 py-3 rounded-lg font-medium hover:bg-pink-50 transition-all"
               >
                 Create Another
-              </button>
+              </button>*/}
             </div>
           </div>
         </div>
@@ -259,7 +259,7 @@ const BirthdayCard = () => {
       )}
       
       <div className="text-center mt-6 text-gray-500 text-sm">
-        <p>Made with ❤️ to celebrate special moments</p>
+        <p>Made with ❤️ by Jamison Lii</p>
       </div>
     </div>
   );
