@@ -1,14 +1,51 @@
-import React, { useState } from "react";
-import { FiHeart, FiArrowLeft, FiShare2, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import React, { useEffect, useState, useRef } from "react";
+import { FiHeart, FiShare2, FiChevronLeft, FiChevronRight, FiMusic, FiVolume2, FiVolumeX } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import D1 from '../assets/D1.jpeg';
 import D2 from '../assets/D2.jpeg';
 import D3 from '../assets/D3.jpeg';
+import BackgroundMusic from '../assets/Adun.mp3'; // Update with your audio file
 
 const BirthdayCard = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
   const navigate = useNavigate();
+
+  // Initialize audio
+  useEffect(() => {
+    audioRef.current = new Audio(BackgroundMusic);
+    audioRef.current.loop = true;
+    
+    // Try to autoplay (may be blocked by browser)
+    const playPromise = audioRef.current.play();
+    
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => setIsMusicPlaying(true))
+        .catch(error => {
+          console.log("Autoplay prevented:", error);
+          setIsMusicPlaying(false);
+        });
+    }
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  const toggleMusic = () => {
+    if (isMusicPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsMusicPlaying(!isMusicPlaying);
+  };
 
   // Card data with image-specific messages
   const cardData = {
@@ -62,16 +99,19 @@ const BirthdayCard = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50 p-4">
+      {/* Music Control */}
+      <button 
+        onClick={toggleMusic}
+        className="fixed bottom-4 left-4 z-40 bg-white/80 p-3 rounded-full shadow-lg hover:bg-white transition-all"
+        aria-label={isMusicPlaying ? "Mute music" : "Play music"}
+      >
+        {isMusicPlaying ? <FiVolume2 className="text-pink-600" /> : <FiVolumeX className="text-pink-600" />}
+      </button>
+
       {/* Main Card */}
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
         {/* Header */}
         <div className="p-4 bg-gradient-to-r from-pink-600 to-purple-600 text-white flex justify-between items-center">
-          <button 
-            onClick={() => navigate('/')}
-            className="flex items-center gap-1 text-sm hover:underline"
-          >
-            <FiArrowLeft /> Back
-          </button>
           <button 
             onClick={shareCard}
             className="flex items-center gap-1 text-sm bg-white/20 px-3 py-1 rounded-full hover:bg-white/30"
