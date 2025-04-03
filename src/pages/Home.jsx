@@ -64,17 +64,17 @@ const BirthdayCard = () => {
       { 
         src: D1, 
         message: "Wishing you an amazing birthday filled with joy and laughter!",
-        caption: "May your smile always shine this bright!"
+        caption: "📖 Jeremiah 29:11 : For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future."
       },
       { 
         src: D2, 
-        message: "May this special day bring you happiness and wonderful memories!",
-        caption: "Celebrating your wonderful spirit today!"
+        message: "The Best is yet to come",
+        caption: "📖 Romans 8:28 : And we know that in all things God works for the good of those who love Him, who have been called according to His purpose."
       },
       { 
         src: D3, 
-        message: "Here's to another year of amazing adventures and success!",
-        caption: "Your best year starts now!"
+        message: "Here's to another year of amazing adventures and success",
+        caption: "📖 Isaiah 41:10 : So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand."
       }
     ],
     defaultCaption: "May your day be as special as you are"
@@ -259,7 +259,7 @@ const BirthdayCard = () => {
       )}
       
       <div className="text-center mt-6 text-gray-500 text-sm">
-        <p>Made with ❤️ by Jamison Lii</p>
+        <p>PS: I dont have money, but I can code 😅</p>
       </div>
     </div>
   );
