@@ -259,7 +259,7 @@ const BirthdayCard = () => {
       )}
       
       <div className="text-center mt-6 text-gray-500 text-sm">
-        <p>PS: I dont have money, but I can code 😅</p>
+        <p>PS: I dont have money, but I can code 😅,  So I made this</p>
       </div>
     </div>
   );
